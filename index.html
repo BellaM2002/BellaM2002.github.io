@@ -117,29 +117,27 @@
             color: #c65d30;
         }
 
-        /* Flexbox for cards */
+
         .card-container {
-            display: flex;
-            flex-wrap: wrap; /* Cards will wrap to the next line when necessary */
-            gap: 20px; /* Adds space between the cards */
+            gap: 20px; 
             justify-content: space-between;
         }
 
         .card {
-            width: calc(33.333% - 20px); /* 3 cards per row, minus the gap */
+            width: calc(33.333% - 20px);
             box-sizing: border-box;
             margin-bottom: 20px;
         }
 
         @media (max-width: 768px) {
             .card {
-                width: calc(50% - 20px); /* On smaller screens (like tablets), show 2 cards per row */
+                width: calc(50% - 20px);
             }
         }
 
         @media (max-width: 480px) {
             .card {
-                width: 100%; /* On phones, show 1 card per row */
+                width: 100%; 
             }
         }
 
