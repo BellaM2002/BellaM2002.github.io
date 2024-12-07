@@ -6,16 +6,6 @@
     <title>Anime Universe Explorer</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rock+Salt&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
-
-    .intro-image {
-        display: block; /* Ensures the image behaves as a block element */
-        margin: 20px auto; /* Centers the image horizontally and adds space above/below */
-        width: 100%; /* Ensures the image takes up full width of the screen */
-        max-width: 1200px; /* Limits the max width to prevent stretching on large screens */
-        height: auto; /* Maintains aspect ratio */
-        border-radius: 15px; /* Optional: Rounded corners */
-        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for a more stylish look */
-    }
         * {
             margin: 0;
             padding: 0;
@@ -70,6 +60,15 @@
             width: 100%;
             height: 180px;
             object-fit: cover;
+            filter: brightness(0.95) contrast(1.1);
+            transition: filter 0.3s ease, transform 0.3s ease;
+            border-bottom: 2px solid #FF7043;
+        }
+
+        .anime-img:hover {
+            filter: brightness(1.2) contrast(1.2);
+            transform: scale(1.05);
+            border-bottom-color: #FF5722;
         }
 
         .anime-title {
@@ -107,7 +106,6 @@
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
         }
 
-        /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
@@ -149,35 +147,36 @@
         }
 
         .modal-img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin-bottom: 15px;
+            width: 100%; 
+            height: auto; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
+            transition: transform 0.3s ease; 
         }
 
-    .close {
-        position: absolute;
-        top: 10px;
-        right: 15px;
-        font-size: 2rem;
-        color: #FF7043;
-        background-color: #fff;
-        border: 2px solid #FF7043; 
-        padding: 5px 12px;
-        border-radius: 50%; 
-        cursor: pointer;
-        transition: all 0.3s ease;
+        .modal-img:hover {
+                transform: scale(1.03);
+       }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 2rem;
+            color: #FF7043;
+            background-color: #fff;
+            border: 2px solid #FF7043;
+            padding: 5px 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
         .close:hover {
-        transform: scale(1.2);
-        background-color: #FF7043;
-        color: white; 
-    }
-
-    .close:focus {
-        outline: none;
-    }
+            transform: scale(1.2);
+            background-color: #FF7043;
+            color: white;
+        }
 
         footer {
             background-color: #6D4C41;
@@ -223,8 +222,7 @@
     <img src="Char1.webp" alt="Anime Characters" class="intro-image">
 
     <div class="anime-container" id="anime-container"></div>
-
-    <!-- Modal -->
+    
     <div id="myModal" class="modal">
         <div class="modal-content">
             <span class="close" id="closeModal">&times;</span>
@@ -257,7 +255,8 @@
                 const card = document.createElement('div');
                 card.classList.add('anime-card');
                 card.innerHTML = `
-                    <img src="${anime.images.jpg.image_url}" class="anime-img" alt="${anime.title}">
+                    <img src="${anime.images.jpg.large_image_url || anime.images.jpg.image_url}" 
+                         loading="lazy" class="anime-img" alt="${anime.title}">
                     <div class="anime-title">${anime.title}</div>
                     <div class="anime-footer">
                         <button class="read-more" onclick="showModal(${index})">Read More</button>
@@ -268,23 +267,25 @@
         }
 
         function showModal(index) {
-            const anime = animeList[index];
-            modalImg.src = anime.images.jpg.large_image_url;
-            modalImg.alt = anime.title;
-            modalTitle.textContent = anime.title;
-            modalDescription.textContent = anime.synopsis || 'No description available.';
-            modal.style.display = 'flex';
-        }
+        const anime = animeList[index];
+        modalImg.src = anime.images.jpg.large_image_url || anime.images.jpg.image_url;
+        modalImg.alt = anime.title;
+        modalTitle.textContent = anime.title;
+        modalDescription.textContent = anime.synopsis || 'No description available.';
+        modal.style.display = 'flex';
+}
 
-        closeModal.onclick = () => {
-            modal.style.display = 'none';
-        };
+closeModal.onclick = () => {
+    modal.style.display = 'none'; 
+};
 
-        window.onclick = (event) => {
-            if (event.target === modal) {
-                modal.style.display = 'none';
-            }
-        };
+
+window.onclick = (event) => {
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+};
+
 
         fetchAnime();
     </script>
