@@ -1,1 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 Error</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(180deg, #6c568c, #d2a5f4);
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    .container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 120px;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .oops {
+      font-size: 40px;
+      margin-bottom: 30px;
+    }
+
+    .message {
+      font-size: 18px;
+      margin-bottom: 40px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 20px;
+    }
+
+    .buttons a {
+      padding: 10px 30px;
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      background-color: #6c49dc;
+      transition: background-color 0.3s;
+    }
+
+    .buttons a:hover {
+      background-color: #5128b2;
+    }
+
+    .character {
+      position: absolute;
+      bottom: 30px;
+      left: 20px;
+    }
+
+    .background-error {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255, 255, 255, 0.1);
+      font-size: 100px;
+      font-weight: bold;
+    }
+
+    .background-error:nth-child(1) {
+      animation: fade 3s infinite;
+    }
+
+    @keyframes fade {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="background-error">ERROR 404</div>
+    <div class="background-error" style="top: 25%; left: 40%;">ERROR 404</div>
+    <div class="background-error" style="top: 30%; left: 60%;">ERROR 404</div>
+    <h1>404</h1>
+    <div class="oops">Oops!</div>
+    <div class="message">Sorry, we couldn't find the page you're looking for.</div>
+    <div class="buttons">
+      <a href="#">Exit</a>
+      <a href="#">Contact us</a>
+    </div>
+    <img src="detective-character.png" alt="Detective Character" class="character">
+  </div>
+</body>
+</html>
 
